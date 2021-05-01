@@ -1,0 +1,1 @@
+controller_joint_names: ['', 'rot_joint', 'vert_joint', 'hor_link', 'grip_rot_joint', 'gripper_joint', ]

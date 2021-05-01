@@ -1,0 +1,11 @@
+controller_list:
+  - name: fake_arm_planner_controller
+    joints:
+      - rot_joint
+      - vert_joint
+      - hor_link
+      - grip_rot_joint
+      - gripper_joint
+initial:  # Define initial robot poses.
+  - group: arm_planner
+    pose: home

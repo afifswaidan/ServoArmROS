@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="servo_arm">
+    <link name="base_link">
+        
+<inertial>
+            <origin xyz="-0.00048821 -0.0056768 0.025501" rpy="0 0 0" />
+            <mass value="0.5" />
+            <inertia ixx="4.6375E-05" ixy="-1.426E-08" ixz="4.236E-07" iyy="8.819E-05" iyz="-8.4986E-08" izz="9.2744E-05" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://servo_arm/meshes/base_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.89804 0.91765 0.92941 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://servo_arm/meshes/base_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+  <!-- Used for fixing robot to Gazebo 'base_link' -->
+  <link name="world"/>
+
+  <joint name="fixed_joint" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+
+
+    <link name="rot_link">
+        
+<inertial>
+            <origin xyz="0.011605 -0.0051384 0.010361" rpy="0 0 0" />
+            <mass value="0.04575" />
+            <inertia ixx="8.0962E-06" ixy="-8.4986E-08" ixz="1.6429E-09" iyy="1.0277E-05" iyz="4.236E-07" izz="1.455E-05" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://servo_arm/meshes/rot_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0 0.47059 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://servo_arm/meshes/rot_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="rot_joint" type="revolute">
+        <origin xyz="0.00014502 -0.00765 0.0788" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="rot_link" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="10" />
+    </joint>
+    <link name="vert_link">
+        
+<inertial>
+            <origin xyz="2.528E-12 -0.0019173 0.051" rpy="0 0 0" />
+            <mass value="0.045902" />
+            <inertia ixx="4.65E-05" ixy="2.5279E-20" ixz="2.1191E-20" iyy="2.1143E-05" iyz="2.1012E-08" izz="3.0185E-05" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://servo_arm/meshes/vert_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.89804 0.91765 0.92941 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://servo_arm/meshes/vert_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="vert_joint" type="revolute">
+        <origin xyz="0.021504 0 0.012042" rpy="0 0 0" />
+        <parent link="rot_link" />
+        <child link="vert_link" />
+        <axis xyz="0 -1 0" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="10" />
+    </joint>
+    <link name="hor_link">
+        
+<inertial>
+            <origin xyz="0.0299858372755309 -0.00357139808845294 -0.00116328779407313" rpy="0 0 0" />
+            <mass value="0.0756059834208811" />
+            <inertia ixx="2.39528336246925E-05" ixy="7.43744294317816E-08" ixz="-3.20999247152233E-07" iyy="2.20886898553342E-05" iyz="4.23597363903195E-07" izz="3.89949347558978E-05" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://servo_arm/meshes/hor_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.498039215686275 0.498039215686275 0.498039215686275 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://servo_arm/meshes/hor_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="hor_link" type="revolute">
+        <origin xyz="0 0 0.102" rpy="0 0 0" />
+        <parent link="vert_link" />
+        <child link="hor_link" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="10" />
+    </joint>
+    <link name="grip_rot_link">
+        
+<inertial>
+            <origin xyz="0.016901 -0.0073817 -0.014684" rpy="0 0 0" />
+            <mass value="0.0915" />
+            <inertia ixx="2.4828E-05" ixy="-5.0858E-07" ixz="-4.2524E-07" iyy="1.8374E-05" iyz="-8.6629E-08" izz="2.2646E-05" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://servo_arm/meshes/grip_rot_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0 0.47059 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://servo_arm/meshes/grip_rot_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="grip_rot_joint" type="revolute">
+        <origin xyz="0.097504 0 0.0019578" rpy="0 0 0" />
+        <parent link="hor_link" />
+        <child link="grip_rot_link" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="10" />
+    </joint>
+    <link name="gripper">
+        
+<inertial>
+            <origin xyz="0.035088 -0.014362 -0.013764" rpy="0 0 0" />
+            <mass value="0.048503" />
+            <inertia ixx="1.0299E-05" ixy="-1.3455E-08" ixz="-4.7081E-10" iyy="8.1992E-06" iyz="-1.4078E-07" izz="1.0427E-05" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://servo_arm/meshes/gripper.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.49804 0.49804 0.49804 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://servo_arm/meshes/gripper.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="gripper_joint" type="revolute">
+        <origin xyz="0.058342 0.00016731 -0.021151" rpy="0 0 0" />
+        <parent link="grip_rot_link" />
+        <child link="gripper" />
+        <axis xyz="1 0 0" />
+        <limit lower="-1.57" upper="1.57" effort="10" velocity="10" />
+    </joint>
+    
+<transmission name="trans_rot_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="rot_joint">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="rot_joint_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_vert_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="vert_joint">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="vert_joint_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_hor_link">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="hor_link">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="hor_link_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_grip_rot_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="grip_rot_joint">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="grip_rot_joint_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_gripper_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="gripper_joint">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="gripper_joint_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
+</robot>
